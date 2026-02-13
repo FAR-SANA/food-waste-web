@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f7f6;
+  color: #222;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background: #2ecc71;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background: #27ae60;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.available {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.expiring {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
