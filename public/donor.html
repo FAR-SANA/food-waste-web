@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Dashboard</title>
+
+<style>
+
+/* ===== GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #2e7d32;
+  color: white;
+  padding: 15px 30px;
+}
+
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding-bottom: 3px;
+}
+
+.nav-links a:hover {
+  border-bottom: 2px solid white;
+}
+
+.logout-btn {
+  background: #c62828;
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ===== DASHBOARD LAYOUT ===== */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 420px 1fr; /* LEFT SMALL | RIGHT BIG */
+  gap: 30px;
+  padding: 30px;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== FORM ===== */
+.food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Button */
+.btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #256428;
+}
+
+/* ===== POSTS ===== */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.available {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 900px){
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar dashboard-nav">
+
+  <div class="logo">🥗 Donor Dashboard</div>
+
+  <div class="nav-links">
+    <a href="donor.html">Manage Posts</a>
+    <a href="#">View Requests</a>
+    <a href="#">Profile</a>
+  </div>
+
+  <button class="logout-btn">Logout</button>
+
+</nav>
+
+<!-- ===== MAIN DASHBOARD ===== -->
+<main class="dashboard-container">
+
+  <!-- LEFT SIDE → POST FOOD -->
+  <section class="dashboard-card">
+
+    <h2>Post Surplus Food</h2>
+
+    <form class="food-form" id="foodForm">
+
+      <div class="form-group">
+        <label>Food Title</label>
+        <input type="text" id="title" required>
+      </div>
+
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="text" id="quantity" required>
+      </div>
+
+      <div class="form-group">
+        <label>Pickup Location</label>
+        <input type="text" id="location" required>
+      </div>
+
+      <div class="form-group">
+        <label>Prepared Time</label>
+        <input type="datetime-local" id="prepared" required>
+      </div>
+
+      <div class="form-group">
+        <label>Expiry Time</label>
+        <input type="datetime-local" id="expiry" required>
+      </div>
+
+      <button type="submit" class="btn">Post Food</button>
+
+    </form>
+
+  </section>
+
+  <!-- RIGHT SIDE → POSTS -->
+  <section class="dashboard-card">
+
+    <h2>My Food Posts</h2>
+
+    <div class="posts-container" id="postsContainer">
+      <p id="emptyMessage">No posts yet.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+
+const form = document.getElementById("foodForm");
+const postsContainer = document.getElementById("postsContainer");
+const emptyMessage = document.getElementById("emptyMessage");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const quantity = document.getElementById("quantity").value;
+  const location = document.getElementById("location").value;
+
+  if (emptyMessage) emptyMessage.remove();
+
+  const postCard = document.createElement("div");
+  postCard.classList.add("post-card");
+
+  postCard.innerHTML = `
+    <h3>${title}</h3>
+    <p><strong>Quantity:</strong> ${quantity}</p>
+    <p><strong>Location:</strong> ${location}</p>
+    <span class="status available">Available</span>
+  `;
+
+  postsContainer.appendChild(postCard);
+
+  form.reset();
+});
+
+</script>
+
+</body>
+</html>

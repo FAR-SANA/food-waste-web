@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receiver Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar dashboard-nav">
+
+  <div class="logo">🥗 Receiver Dashboard</div>
+
+  <!-- Navigation Links -->
+  <div class="nav-links">
+    <a href="receiver.html" class="active">Available Food</a>
+    <a href="request-history.html">Request History</a>
+    <a href="profile.html">Profile</a>
+  </div>
+
+  <button class="logout-btn">Logout</button>
+
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="dashboard-container receiver-container">
+
+  <section class="dashboard-card">
+
+    <h2 class="receiver-title">Available Food Donations</h2>
+
+    <!-- Empty State Message -->
+    <div id="emptyMessage" class="empty-message">
+      No food donations available right now.
+    </div>
+
+    <!-- Food List -->
+    <div class="posts-container receiver-posts" id="foodList"></div>
+
+  </section>
+
+</main>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+/* Elements */
+const foodList = document.getElementById("foodList");
+const emptyMessage = document.getElementById("emptyMessage");
+
+/* Start With Empty Data */
+const foods = [];
+
+/* Render Food Posts */
+function renderFoods() {
+
+  foodList.innerHTML = "";
+
+  if (foods.length === 0) {
+    emptyMessage.style.display = "block";
+    return;
+  }
+
+  emptyMessage.style.display = "none";
+
+  foods.forEach(food => {
+
+    const card = document.createElement("div");
+    card.classList.add("post-card");
+
+    card.innerHTML = `
+      <h3>${food.title}</h3>
+      <p><strong>Quantity:</strong> ${food.quantity}</p>
+      <p><strong>Location:</strong> ${food.location}</p>
+      <button class="btn claim-btn">Request Food</button>
+    `;
+
+    foodList.appendChild(card);
+
+  });
+}
+
+/* Initial Load */
+renderFoods();
+
+/* Logout */
+document.querySelector(".logout-btn").addEventListener("click", () => {
+  window.location.href = "login.html";
+});
+
+</script>
+
+</body>
+</html>
