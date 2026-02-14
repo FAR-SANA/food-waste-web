@@ -3,27 +3,27 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# [food-waste-webapp] 🎯
 
 ## Basic Details
 
-### Team Name: [farsana]
+### Team Name: [Techmate]
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: [farsana] - [SCMS School Of Engineering and Technologoly]
+- Member 2: [fathima] - [SCMS School Of Engineering and Technologoly]
 
 ### Hosted Project Link
-[mention your project hosted link here]
+[]
 
 ### Project Description
-[2-3 lines about what your project does]
+[The Food Waste Reduction Web App connects food donors with receivers to reduce wastage and help redistribute surplus food to people in need. Donors can post available food details, while receivers can view and request food in real time. The platform uses Supabase for secure authentication and data storage. The web app is hosted on Vercel for easy access from anywhere.]
 
 ### The Problem statement
-[What problem are you solving?]
+[Every day, restaurants and households discard large amounts of edible food due to over-preparation and lack of timely distribution channels. At the same time, many NGOs and volunteers struggle to source food for people in need. There is no simple, real-time platform to connect food donors with nearby receivers. This gap leads to increased food waste and missed opportunities to support vulnerable communities.]
 
 ### The Solution
-[How are you solving it?]
+[Our web app provides a real-time platform where food donors can post surplus food details and nearby receivers can discover and request pickups instantly. The system ensures food safety using time-bound expiry for each post]
 
 ---
 
@@ -32,25 +32,25 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Languages used: [html,javascript,css]
+- Frameworks used: [none]
+- Libraries used: [Supabase JS SDK]
+- Tools used: [VS code , git ,supabase ]
 
 **For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+- Main components: [none]
+- Specifications: [none]
+- Tools required: [none]
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: [Secure login and role-based access for donors and receivers using Supabase.]
+- Feature 2: [Donors can post surplus food with quantity, location, and expiry time.]
+- Feature 3: [Receivers can browse available food and request pickups in real time]
+- Feature 4: [The web app is deployed on Vercel for fast and easy access.]
 
 ---
 
