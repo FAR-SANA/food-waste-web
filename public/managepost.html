@@ -1,363 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Posts Dashboard</title>
-  <style>
-    /* ===== GLOBAL ===== */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4fdf6;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Posts</title>
 
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: #2e7d32;
-      padding: 15px 40px;
-      color: white;
-      font-size: 22px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+<style>
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4fdf6;
+}
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      padding-bottom: 3px;
-      transition: 0.3s;
-    }
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #2e7d32;
+  padding: 15px 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-bottom: 2px solid white;
-    }
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    .logout-btn {
-      background: white;
-      color: #2e7d32;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
 
-    .logout-btn:hover {
-      background: #e8f5e9;
-    }
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 3px;
+}
 
-    /* ===== DASHBOARD CONTAINER ===== */
-    .dashboard-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+.nav-links a:hover,
+.nav-links a.active {
+  border-bottom: 2px solid white;
+}
 
-    /* ===== DASHBOARD HEADER ===== */
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+.logout-btn {
+  background: #c62828;
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    .dashboard-header h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: bold;
-      color: #2e7d32;
-    }
+/* ===== CONTAINER ===== */
+.dashboard-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px;
+}
 
-    .dashboard-header .search-box {
-      display: flex;
-      gap: 10px;
-    }
+/* ===== HEADER ===== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
 
-    .search-box input {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
+.dashboard-header h2 {
+  color: #2e7d32;
+}
 
-    .search-box button {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      background: #43a047;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.search-box {
+  display: flex;
+  gap: 10px;
+}
 
-    .search-box button:hover {
-      background: #2e7d32;
-    }
+.search-box input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 
-    /* ===== POSTS GRID ===== */
-    .posts-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
+.search-box button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #43a047;
+  color: white;
+  cursor: pointer;
+}
 
-    /* ===== POST CARD ===== */
-    .post-card {
-      background: #f9fff9;
-      border-left: 5px solid #43a047;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+/* ===== POSTS GRID ===== */
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
+/* ===== POST CARD ===== */
+.post-card {
+  background: white;
+  border-left: 5px solid #43a047;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
 
-    .post-card h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      color: #2e7d32;
-    }
+.post-card h3 {
+  margin: 0 0 10px;
+  color: #2e7d32;
+}
 
-    .post-card p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #555;
-    }
+.post-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
 
-    .post-card .status {
-      margin-top: 10px;
-      display: inline-block;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 5px 10px;
-      border-radius: 20px;
-    }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
 
-    .status.available {
-      background: #c8e6c9;
-      color: #2e7d32;
-    }
+.available {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
 
-    .status.claimed {
-      background: #ffe0b2;
-      color: #ff6f00;
-    }
+.claimed {
+  background: #ffe0b2;
+  color: #ff6f00;
+}
 
-    /* ===== POST CARD ACTIONS ===== */
-    .post-actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-      gap: 10px;
-    }
+/* ===== ACTION BUTTONS ===== */
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
 
-    .post-actions button {
-      flex: 1;
-      padding: 8px 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+.post-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
 
-    .post-actions .edit-btn {
-      background: #1976d2;
-      color: white;
-    }
+.edit-btn {
+  background: #1976d2;
+  color: white;
+}
 
-    .post-actions .edit-btn:hover {
-      background: #1565c0;
-    }
+.delete-btn {
+  background: #d32f2f;
+  color: white;
+}
 
-    .post-actions .delete-btn {
-      background: #d32f2f;
-      color: white;
-    }
+.claim-btn {
+  background: #43a047;
+  color: white;
+}
 
-    .post-actions .delete-btn:hover {
-      background: #b71c1c;
-    }
+/* ===== EMPTY MESSAGE ===== */
+.empty-message {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}
 
-    .post-actions .claim-btn {
-      background: #43a047;
-      color: white;
-    }
+@media(max-width: 768px){
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
 
-    .post-actions .claim-btn:hover {
-      background: #2e7d32;
-    }
-
-    /* ===== EMPTY DASHBOARD MESSAGE ===== */
-    .empty-message {
-      text-align: center;
-      font-size: 16px;
-      color: #777;
-      padding: 50px;
-      background: #f9fff9;
-      border: 1px dashed #c8e6c9;
-      border-radius: 12px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        font-size: 18px;
-        padding: 12px 20px;
-      }
-      .posts-container {
-        grid-template-columns: 1fr;
-      }
-      .search-box input {
-        width: 100%;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">FoodShare Dashboard</div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Manage Posts</a>
-      <a href="#">Profile</a>
-      <button class="logout-btn">Logout</button>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">🥗 Donor Dashboard</div>
+  <div class="nav-links">
+    <a href="donor.html">Home</a>
+    <a href="managepost.html" class="active">Manage Posts</a>
+    <a href="profiledonor.html">Profile</a>
+  </div>
+  <button class="logout-btn">Logout</button>
+</nav>
+
+<!-- DASHBOARD -->
+<div class="dashboard-container">
+
+  <div class="dashboard-header">
+    <h2>Manage Posts</h2>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search posts...">
+      <button onclick="loadPosts()">Search</button>
     </div>
   </div>
 
-  <!-- DASHBOARD CONTAINER -->
-  <div class="dashboard-container">
+  <div class="posts-container" id="postsContainer"></div>
+  <div class="empty-message" id="emptyMessage">Loading posts...</div>
 
-    <!-- HEADER -->
-    <div class="dashboard-header">
-      <h2>Manage Posts</h2>
-      <div class="search-box">
-        <input type="text" id="search-input" placeholder="Search posts...">
-        <button onclick="loadPosts()">Search</button>
+</div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ===== REPLACE WITH YOUR REAL SUPABASE KEYS ===== */
+const supabaseUrl = "YOUR_SUPABASE_URL";
+const supabaseKey = "YOUR_SUPABASE_ANON_KEY";
+
+let supabaseClient = null;
+let isDemoMode = false;
+
+/* ===== DEMO DATA ===== */
+let demoPosts = [
+  { id: "1", title: "Rice & Curry", quantity: "10 Packets", location: "City Center", status: "available" },
+  { id: "2", title: "Bread Loaves", quantity: "15 Pieces", location: "Main Street", status: "claimed" },
+  { id: "3", title: "Vegetable Biryani", quantity: "8 Boxes", location: "North Street", status: "available" }
+];
+
+/* ===== INIT MODE ===== */
+if (supabaseUrl !== "YOUR_SUPABASE_URL" && supabaseKey !== "YOUR_SUPABASE_ANON_KEY") {
+  supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+} else {
+  isDemoMode = true;
+}
+
+/* ===== LOAD POSTS ===== */
+async function loadPosts() {
+
+  const searchText = document.getElementById('search-input').value.trim().toLowerCase();
+  const container = document.getElementById('postsContainer');
+  const emptyMessage = document.getElementById('emptyMessage');
+
+  container.innerHTML = '';
+
+  let data = [];
+
+  if (isDemoMode) {
+
+    data = demoPosts.filter(post =>
+      post.title.toLowerCase().includes(searchText)
+    );
+
+  } else {
+
+    let query = supabaseClient
+      .from('posts')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (searchText) {
+      query = query.ilike('title', `%${searchText}%`);
+    }
+
+    const { data: dbData, error } = await query;
+
+    if (error) {
+      emptyMessage.innerText = "Error loading posts.";
+      return;
+    }
+
+    data = dbData;
+  }
+
+  if (!data || data.length === 0) {
+    emptyMessage.innerText = "No posts available.";
+    return;
+  }
+
+  emptyMessage.innerText = "";
+
+  data.forEach(post => {
+
+    const card = document.createElement('div');
+    card.className = "post-card";
+
+    card.innerHTML = `
+      <h3>${post.title}</h3>
+      <p><strong>Quantity:</strong> ${post.quantity}</p>
+      <p><strong>Location:</strong> ${post.location}</p>
+      <span class="status ${post.status === 'claimed' ? 'claimed' : 'available'}">
+        ${post.status}
+      </span>
+      <div class="post-actions">
+        <button class="edit-btn" onclick="editPost('${post.id}')">Edit</button>
+        <button class="delete-btn" onclick="deletePost('${post.id}')">Delete</button>
+        <button class="claim-btn" onclick="claimPost('${post.id}')">Claim</button>
       </div>
-    </div>
+    `;
 
-    <!-- POSTS GRID -->
-    <div class="posts-container"></div>
+    container.appendChild(card);
 
-    <!-- EMPTY DASHBOARD MESSAGE -->
-    <div class="empty-message" style="display: none;">
-      No posts available. Please add new posts.
-    </div>
+  });
 
-  </div>
+}
 
-  <!-- SUPABASE JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    // Replace with your Supabase credentials
-    const supabaseUrl = "YOUR_SUPABASE_URL";
-    const supabaseKey = "YOUR_SUPABASE_ANON_KEY";
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+/* ===== ACTIONS ===== */
 
-    async function loadPosts() {
-      const searchText = document.getElementById('search-input').value.trim();
-      let query = supabase.from('posts').select('*').order('created_at', { ascending: false });
+function editPost(id){
+  alert("Edit functionality coming soon. Post ID: " + id);
+}
 
-      if (searchText) {
-        query = query.ilike('title', `%${searchText}%`);
-      }
+async function deletePost(id){
 
-      const { data, error } = await query;
-      const postsContainer = document.querySelector('.posts-container');
-      const emptyMessage = document.querySelector('.empty-message');
+  if(!confirm("Delete this post?")) return;
 
-      postsContainer.innerHTML = '';
-
-      if (error) {
-        console.error(error);
-        emptyMessage.style.display = 'block';
-        emptyMessage.textContent = 'Error loading posts.';
-        return;
-      }
-
-      if (!data || data.length === 0) {
-        emptyMessage.style.display = 'block';
-        return;
-      }
-
-      emptyMessage.style.display = 'none';
-
-      data.forEach(post => {
-        const card = document.createElement('div');
-        card.className = 'post-card';
-        card.innerHTML = `
-          <h3>${post.title}</h3>
-          <p>Donated by: ${post.donor_name}</p>
-          <p>Location: ${post.location}</p>
-          <span class="status ${post.status === 'available' ? 'available' : 'claimed'}">
-            ${post.status.charAt(0).toUpperCase() + post.status.slice(1)}
-          </span>
-          <div class="post-actions">
-            <button class="edit-btn" onclick="editPost('${post.id}')">Edit</button>
-            <button class="delete-btn" onclick="deletePost('${post.id}')">Delete</button>
-            <button class="claim-btn" onclick="claimPost('${post.id}')">Claim</button>
-          </div>
-        `;
-        postsContainer.appendChild(card);
-      });
-    }
-
-    // Example actions
-    function editPost(id) {
-      alert(`Edit post ${id}`);
-      // Implement edit functionality or redirect to edit page
-    }
-
-    async function deletePost(id) {
-      if (!confirm("Are you sure you want to delete this post?")) return;
-      const { error } = await supabase.from('posts').delete().eq('id', id);
-      if (error) alert("Failed to delete post.");
-      else loadPosts();
-    }
-
-    async function claimPost(id) {
-      const { error } = await supabase.from('posts').update({ status: 'claimed' }).eq('id', id);
-      if (error) alert("Failed to claim post.");
-      else loadPosts();
-    }
-
-    // Load posts on page load
+  if (isDemoMode) {
+    demoPosts = demoPosts.filter(post => post.id !== id);
     loadPosts();
-  </script>
+    return;
+  }
+
+  const { error } = await supabaseClient.from('posts').delete().eq('id', id);
+
+  if(error) alert("Failed to delete.");
+  else loadPosts();
+}
+
+async function claimPost(id){
+
+  if (isDemoMode) {
+    demoPosts = demoPosts.map(post =>
+      post.id === id ? { ...post, status: 'claimed' } : post
+    );
+    loadPosts();
+    return;
+  }
+
+  const { error } = await supabaseClient.from('posts')
+    .update({ status: 'claimed' })
+    .eq('id', id);
+
+  if(error) alert("Failed to update.");
+  else loadPosts();
+}
+
+/* LOAD ON PAGE OPEN */
+loadPosts();
+
+</script>
+
 </body>
 </html>

@@ -52,6 +52,12 @@ body{
   height:120px;
   border-radius:50%;
   background:#c8e6c9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  color:#2e7d32;
+  font-weight:bold;
 }
 
 .profile-info h2{
@@ -139,37 +145,60 @@ body{
   <div class="profile-card">
 
     <div class="profile-header">
-      <div class="profile-img"></div>
+      <div class="profile-img" id="profileInitial"></div>
       <div class="profile-info">
-        <h2></h2>
-        <p></p>
-        <p></p>
+        <h2 id="donorName"></h2>
+        <p id="donorEmail"></p>
+        <p id="donorPhone"></p>
 
-        <!-- LINK TO EDIT PAGE -->
         <a href="editprdonor.html" class="edit-btn">Edit Profile</a>
-
       </div>
     </div>
 
     <div class="stats">
       <div class="stat-box">
-        <h3></h3>
+        <h3 id="totalDonations"></h3>
         <p>Total Donations</p>
       </div>
 
       <div class="stat-box">
-        <h3></h3>
+        <h3 id="foodDonated"></h3>
         <p>Food Donated</p>
       </div>
 
       <div class="stat-box">
-        <h3></h3>
+        <h3 id="completedDonations"></h3>
         <p>Completed Donations</p>
       </div>
     </div>
 
   </div>
 </div>
+
+<script>
+
+/* ===== DEMO DATA ===== */
+const demoProfile = {
+  name: "Green Leaf Restaurant",
+  email: "greenleaf@gmail.com",
+  phone: "+91 9876543210",
+  totalDonations: 24,
+  foodDonated: "320 kg",
+  completedDonations: 18
+};
+
+/* ===== LOAD DEMO DATA ===== */
+document.getElementById("donorName").innerText = demoProfile.name;
+document.getElementById("donorEmail").innerText = demoProfile.email;
+document.getElementById("donorPhone").innerText = demoProfile.phone;
+document.getElementById("totalDonations").innerText = demoProfile.totalDonations;
+document.getElementById("foodDonated").innerText = demoProfile.foodDonated;
+document.getElementById("completedDonations").innerText = demoProfile.completedDonations;
+
+/* SET PROFILE INITIAL */
+document.getElementById("profileInitial").innerText = demoProfile.name.charAt(0);
+
+</script>
 
 </body>
 </html>

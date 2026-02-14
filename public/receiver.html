@@ -51,8 +51,24 @@
 const foodList = document.getElementById("foodList");
 const emptyMessage = document.getElementById("emptyMessage");
 
-/* Start With Empty Data */
-const foods = [];
+/* Demo Food Data */
+const foods = [
+  {
+    title: "Cooked Rice & Curry",
+    quantity: "20 Plates",
+    location: "Kochi"
+  },
+  {
+    title: "Vegetable Biryani",
+    quantity: "15 Boxes",
+    location: "Calicut"
+  },
+  {
+    title: "Bread & Bakery Items",
+    quantity: "30 Packs",
+    location: "Thrissur"
+  }
+];
 
 /* Render Food Posts */
 function renderFoods() {

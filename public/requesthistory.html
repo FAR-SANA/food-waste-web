@@ -88,6 +88,7 @@
     }
 
     .empty-message {
+      display: none; /* Hidden because we have demo data */
       text-align: center;
       padding: 20px;
       color: #888;
@@ -123,7 +124,27 @@
       </thead>
       <tbody>
 
-        <!-- Django dynamic data will come here -->
+        <!-- Demo Data -->
+        <tr>
+          <td>Vegetable Biryani</td>
+          <td>10 Boxes</td>
+          <td>10 Feb 2026</td>
+          <td><span class="status approved">Approved</span></td>
+        </tr>
+
+        <tr>
+          <td>Cooked Rice & Curry</td>
+          <td>5 Plates</td>
+          <td>12 Feb 2026</td>
+          <td><span class="status pending">Pending</span></td>
+        </tr>
+
+        <tr>
+          <td>Bakery Items</td>
+          <td>15 Packs</td>
+          <td>05 Feb 2026</td>
+          <td><span class="status rejected">Rejected</span></td>
+        </tr>
 
       </tbody>
     </table>
