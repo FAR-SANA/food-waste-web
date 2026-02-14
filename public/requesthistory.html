@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+    }
+
+    .navbar {
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px 40px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      color: #2e7d32;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .pending {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .approved {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .rejected {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    🥗 Food Waste Reduction - Request History
+  </div>
+
+  <div class="container">
+    <h2>Your Request History</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Quantity</th>
+          <th>Date Requested</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Django dynamic data will come here -->
+
+      </tbody>
+    </table>
+
+    <!-- Optional Empty Message -->
+    <div class="empty-message">
+      No requests found.
+    </div>
+
+  </div>
+
+</body>
+</html>

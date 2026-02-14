@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Requests</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4fdf6;
+}
+
+.navbar {
+  background: #2e7d32;
+  padding: 15px 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.container {
+  padding: 30px;
+}
+
+.request-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pending { background: #fff3e0; color: #ff6f00; }
+.accepted { background: #c8e6c9; color: #2e7d32; }
+.rejected { background: #ffcdd2; color: #c62828; }
+
+button {
+  padding: 6px 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.accept-btn { background: #2e7d32; color: white; }
+.reject-btn { background: #c62828; color: white; }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div>🥗 View Requests</div>
+  <div class="nav-links">
+    <a href="donor.html">Home</a>
+    <a href="managepost.html">Manage Posts</a>
+    <a href="viewrequest.html">View Requests</a>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Requests for Your Posts</h2>
+  <div id="requestsContainer"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+const supabaseUrl = "YOUR_SUPABASE_URL";
+const supabaseKey = "YOUR_SUPABASE_ANON_KEY";
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+async function loadRequests() {
+
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("requests")
+    .select("id, requester_name, status, posts(title, donor_id)")
+    .eq("posts.donor_id", user.id)
+    .order("created_at", { ascending: false });
+
+  const container = document.getElementById("requestsContainer");
+  container.innerHTML = "";
+
+  if (error) {
+    container.innerHTML = "<p>Error loading requests</p>";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    container.innerHTML = "<p>No requests yet.</p>";
+    return;
+  }
+
+  data.forEach(req => {
+
+    const card = document.createElement("div");
+    card.className = "request-card";
+
+    card.innerHTML = `
+      <h3>${req.posts.title}</h3>
+      <p>Requested by: ${req.requester_name}</p>
+      <span class="status ${req.status}">${req.status}</span>
+      ${req.status === "pending" ? `
+        <br>
+        <button class="accept-btn" onclick="updateRequest('${req.id}','accepted')">Accept</button>
+        <button class="reject-btn" onclick="updateRequest('${req.id}','rejected')">Reject</button>
+      ` : ""}
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+async function updateRequest(id, status) {
+  await supabase
+    .from("requests")
+    .update({ status: status })
+    .eq("id", id);
+
+  loadRequests();
+}
+
+loadRequests();
+
+</script>
+
+</body>
+</html>

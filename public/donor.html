@@ -60,7 +60,7 @@ body {
 /* ===== DASHBOARD LAYOUT ===== */
 .dashboard-container {
   display: grid;
-  grid-template-columns: 420px 1fr; /* LEFT SMALL | RIGHT BIG */
+  grid-template-columns: 420px 1fr;
   gap: 30px;
   padding: 30px;
 }
@@ -153,7 +153,6 @@ body {
 }
 
 </style>
-
 </head>
 
 <body>
@@ -164,9 +163,9 @@ body {
   <div class="logo">🥗 Donor Dashboard</div>
 
   <div class="nav-links">
-    <a href="donor.html">Manage Posts</a>
-    <a href="#">View Requests</a>
-    <a href="#">Profile</a>
+    <a href="managepost.html">Manage Posts</a>
+    <a href="viewrequest.html">View Requests</a>
+    <a href="profiledonor.html">Profile</a>
   </div>
 
   <button class="logout-btn">Logout</button>
@@ -233,15 +232,21 @@ const form = document.getElementById("foodForm");
 const postsContainer = document.getElementById("postsContainer");
 const emptyMessage = document.getElementById("emptyMessage");
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
+/* ===== DEMO POSTS ===== */
+const demoPosts = [
+  {
+    title: "Rice & Curry",
+    quantity: "10 Packets",
+    location: "City Center"
+  },
+  {
+    title: "Bread Loaves",
+    quantity: "15 Pieces",
+    location: "Main Street"
+  }
+];
 
-  const title = document.getElementById("title").value;
-  const quantity = document.getElementById("quantity").value;
-  const location = document.getElementById("location").value;
-
-  if (emptyMessage) emptyMessage.remove();
-
+function renderPost(title, quantity, location) {
   const postCard = document.createElement("div");
   postCard.classList.add("post-card");
 
@@ -253,6 +258,24 @@ form.addEventListener("submit", function(e) {
   `;
 
   postsContainer.appendChild(postCard);
+}
+
+/* Load Demo Posts */
+demoPosts.forEach(post => {
+  renderPost(post.title, post.quantity, post.location);
+});
+
+emptyMessage.style.display = "none";
+
+/* ===== ADD NEW POST ===== */
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const quantity = document.getElementById("quantity").value;
+  const location = document.getElementById("location").value;
+
+  renderPost(title, quantity, location);
 
   form.reset();
 });
