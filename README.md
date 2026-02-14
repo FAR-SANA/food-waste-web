@@ -14,7 +14,7 @@
 - Member 2: [fathima] - [SCMS School Of Engineering and Technologoly]
 
 ### Hosted Project Link
-[]
+[food-waste-web.vercel.app]
 
 ### Project Description
 [The Food Waste Reduction Web App connects food donors with receivers to reduce wastage and help redistribute surplus food to people in need. Donors can post available food details, while receivers can view and request food in real time. The platform uses Supabase for secure authentication and data storage. The web app is hosted on Vercel for easy access from anywhere.]
